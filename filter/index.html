@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+		<title>Тестовое задание на vue</title>
+		<link rel="icon" href="../../source/fav/favicon.ico" type="image/x-icon" />
+
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+	</head>
+	<body >
+	<a href="https://vladykod.github.io/"
+	   style="position: fixed;top: 0;left: 0;padding: 10px 15px;color: #000000;z-index: 200;background: #f1dd40; font-size: 14px;"
+	>main</a>
+
+		<section class="container" id="app"  v-bind:class="{ activeApp: isActive }">
+			<h1>Short vue demo</h1>
+
+			<div class="main-content">
+				<div class="el_selected">
+					<div class="el" v-for="item in startState"  v-bind:data-id=item.id>
+						<div class="el_text">{{item.title}}</div>
+						<a href="#" v-bind:parent-id=item.id v-on:click.stop.prevent="removeStartItem(item)" class="el_close"></a>
+					</div>
+
+				</div>
+				<a href="#" v-on:click="initForm" class="button">change selection</a>
+			</div>
+
+			<div class="changeElements_wrap">
+				<div class="changeElements">
+					<div class="changeElements_header">
+						<h3>you can select 3 number</h3>
+						<a href="#" v-on:click="isActive = false" class="el_close"></a>
+					</div>
+					<div class="changeElements_filters">
+						<div class="block">
+							<label for="search">search</label>
+							<input v-model="search" type="search" id="search">
+						</div>
+						<div class="block" id="f2">
+							<label for="filter">filter</label>
+							<select v-model="select" id="filter">
+								<option value="">no filter</option>
+								<option value="10">number > 10</option>
+								<option value="100">number > 100</option>
+								<option value="200">number > 200</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="changeElements_array">
+						<label class="checkItem"
+							   v-for="check in filteredList"
+							   v-bind:for=check.id>
+							<input type="checkbox"
+								   v-model="selectedItems"
+								   v-bind:value="check"
+								   v-bind:id=check.id
+								   v-bind:checked=check.checked
+								   v-on:click="checkNum(check)"
+
+								   v-bind:disabled="!check.checked && checkedLength > 2"
+							>
+							<span>
+								{{ check.title }}
+							</span>
+						</label>
+					</div>
+					<div class="changeElements_res">
+						<h3>You select:</h3>
+						<div class="el_selected">
+							<div class="el" v-for="item in selectedItems"  v-bind:data-id=item.id>
+								<div class="el_text">{{item.title}}</div>
+								<a href="#" v-bind:parent-id=item.id v-on:click.stop.prevent="removeSelectedItem(item)" class="el_close"></a>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="changeElements_footer">
+						<button v-on:click="saveForm" class="button-action button">
+							<span class="button-action_text">save</span>
+						</button>
+						<button v-on:click="cancelForm" class="button">cancel</button>
+					</div>
+				</div>
+			</div>
+
+
+			<!--
+			<article>
+				<h3>Условия:</h3>
+				<ul>
+					<li>при нажатии на "изменить мой выбор" открывается список элементов</li>
+					<li>сформировать список из 300 чекбоксов</li>
+					<li>добавить возможность поиска и фильтрации</li>
+					<li>нельзя выбрать более 3х чекбоксов</li>
+					<li>сохранять или сбрасывать значения при нажатии на кнопки "сохранить" и "отмена"</li>
+				</ul>
+			</article>
+			-->
+		</section>
+
+		<script src="js/vue.js"></script>
+		<script src="js/vueser.js"></script>
+
+	</body>
+</html>
