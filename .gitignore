@@ -7,3 +7,7 @@
 *.zip
 package-lock.json
 *.ai
+*/.nuxt/
+/.nuxt/
+/udemy/nuxt_1/node_modules/
+/udemy/nuxt_1/.nuxt/
