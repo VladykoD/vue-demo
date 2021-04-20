@@ -5,13 +5,14 @@
         Hello sunshine!
       </h1>
       <div class="links">
-        <a
+        <!--a
           href="/users"
           class="button--green"
         >
           Users
-        </a>
+        </a-->
         <nuxt-link to="/users">Users</nuxt-link>
+        <nuxt-link to="/products">Products</nuxt-link>
       </div>
     </div>
   </div>
